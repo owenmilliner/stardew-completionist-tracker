@@ -1,8 +1,8 @@
 const Header = () => {
     return (
         <div className='header'>
-            <h1>Stardew Valley</h1>
-            <h2>Completionist Tracker</h2>
+            <img id="header__logo" src={require('../images/logo.png')} alt="Stardew Valley Logo"/>
+            <img id="header__subtitle" src={require('../images/subtitle.png')} alt="Completion Tracker (Subtitle)"/>
         </div>
     )
 };
