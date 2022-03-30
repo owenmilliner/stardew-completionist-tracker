@@ -1,3 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
+
 .App {
   text-align: center;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 2vh;
+}
+
+body {
+  margin: 0;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+h2 {
+  font-size: 3vh;
+}
+
+.header {
+  height: 20vh;
+  width: 60vw;
+  margin: auto;
+  display: grid;
+  grid-template-rows: 70% 30%;
+  grid-template-areas: "logo" "subtitle";
+  margin-bottom: 1.5vh;
+}
+
+#header__logo {
+  grid-area: logo;
+  height: 100%;
+  margin: auto;
+}
+
+#header__subtitle {
+  grid-area: subtitle;
+  height: 100%;
+  margin: auto;
+}
+
+.instructions {
+  width: 60vw;
+  margin: auto;
+}
+
+.instructions__panel {
+  background-color: #FFDF9B;
+  border-radius: 1vh;
+  padding: 1vh;
+  margin: 1vh;
+}
+
+@media only screen and (max-width: 700px) {
+  .header {
+    height: 15vh;
+    width: 80vw;
+    margin: auto;
+  }
+
+  #header__logo {
+    height: 100%;
+    max-width: 100%;
+    margin: auto;
+  }
+  
+  #header__subtitle {
+    height: 100%;
+    max-width: 100%;
+    margin: auto;
+  }
+
+  .instructions {
+    width: 95vw;
+  }
 }
