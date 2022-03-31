@@ -13,7 +13,6 @@ const SummaryCard = () => {
   };
 
   const formatGameDay = (day, season, year) => {
-    console.log(day, season, year);
     season = `${season.substring(0, 1).toUpperCase()}${season.substring(1)}`;
 
     return (`${day} of ${season}, Year ${year}.`);
@@ -22,6 +21,11 @@ const SummaryCard = () => {
   const formatMoneyEarned = (money) => {
     const formattedMoney = money.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     return `${formattedMoney}g`;
+  };
+
+  const formatAchievementProgress = (achievements) => {
+    const percentage = `${(achievements.length / 40) * 100}%`;
+    return `${percentage} completed. (${achievements.length}/40 achievements).`;
   };
 
   return (
@@ -46,6 +50,9 @@ const SummaryCard = () => {
         </li>
         <li>
           {formatMoneyEarned(selectedFileData.player[0].totalMoneyEarned)} earned.
+        </li>
+        <li>
+          {formatAchievementProgress(selectedFileData.player[0].achievements[0].int)}
         </li>
       </ul>
     </div> 
