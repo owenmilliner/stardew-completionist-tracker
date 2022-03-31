@@ -2,16 +2,19 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Instructions from './components/Instructions';
+import { FileProvider } from './contexts/FileContext';
 
 function App() {
   return (
     <BrowserRouter>
-      <div className='App'>
-        <Header />
-        <Routes>
-          <Route path='/' element={<Instructions />}></Route>
-        </Routes>
-      </div>
+        <FileProvider>
+          <div className='App'>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Instructions />}></Route>
+          </Routes>
+        </div>
+      </FileProvider>
     </BrowserRouter>
   );
 }
