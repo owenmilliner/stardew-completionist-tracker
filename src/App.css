@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 .App {
-  text-align: center;
+  text-align: left;
   font-family: 'Josefin Sans', sans-serif;
   font-size: 2vh;
 }
@@ -50,7 +50,25 @@ h2 {
   background-color: #FFDF9B;
   border-radius: 1vh;
   padding: 1vh;
+  padding-left: 2vh;
   margin: 1vh;
+}
+
+#instructions__start__list li {
+  margin: 1vh;
+  list-style: circle;
+}
+
+.instructions__start__input {
+  border: 1px solid black;
+  display: inline-block;
+  padding: 1vh;
+  cursor: pointer;
+  background-color: whitesmoke;
+}
+
+input[type="file"] {
+  display: none;
 }
 
 @media only screen and (max-width: 700px) {
