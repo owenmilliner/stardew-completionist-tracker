@@ -1,4 +1,27 @@
+import { useContext, useEffect, useState } from 'react';
+import { FileContext } from '../contexts/FileContext';
+
 const Instructions = () => {
+    const { selectedFileData, setSelectedFileData, isFilePicked, setIsFilePicked } = useContext(FileContext);
+    let fileReader;
+
+    const handleFileUpload = (event) => {
+        fileReader = new FileReader();
+        fileReader.onloadend = handleFileRead;
+        fileReader.readAsText(event.target.files[0])
+    }
+
+    const handleFileRead = (event) => {
+        const xml2js = require("xml2js");
+        xml2js.parseString(fileReader.result, (error, result) => {
+            error ? console.log(error) : setSelectedFileData(result);
+        });
+    }
+
+    useEffect(() => {
+        console.log(selectedFileData);
+    }, [selectedFileData])
+
     return (
         <div className='instructions'>
             <div className='instructions__overview instructions__panel'>
@@ -26,13 +49,12 @@ const Instructions = () => {
                     </li>
                 </ul>
                 <p>This file will have a name similar to: <strong>farmName_123456789</strong></p>
-                
+
                 <form>
-                    <label for="file-upload" class="instructions__start__input">
+                    <label htmlFor="file-upload" className="instructions__start__input">
                         📄 File Upload
                     </label>
-                    <input id="file-upload" type="file"/>
-
+                    <input id="file-upload" type="file" onChange={handleFileUpload}/>
                 </form>
 
                 <h2>Manual input.</h2>
