@@ -107,6 +107,38 @@ input[type="file"] {
   padding: 0.25vh 0vh;
 }
 
+.achievements__table {
+  width: 100%;
+}
+
+.achievements__table__col1 {
+  width: 15%;
+}
+
+.achievements__table__col2 {
+  width: 35%;
+}
+
+.achievements__table__col3 {
+  width: 20%;
+}
+
+.achievements__table__col3 {
+  width: 20%;
+}
+
+.achievement__image {
+  width: 5vw;
+}
+
+.achievement__details--unlocked-false {
+  color: red;
+}
+
+.achievement__details--unlocked-true {
+  color: green;
+}
+
 @media only screen and (max-width: 700px) {
   .header {
     height: 15vh;

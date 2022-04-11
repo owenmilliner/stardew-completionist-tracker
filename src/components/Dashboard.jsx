@@ -1,6 +1,7 @@
 import React from 'react';
 import { useContext } from 'react';
 import { FileContext } from '../contexts/FileContext';
+import AchievementsCard from './AchievementsCard';
 import SummaryCard from './SummaryCard';
 
 const Dashboard = () => {
@@ -9,7 +10,10 @@ const Dashboard = () => {
   return (
     <div className='dashboard content'>
       {isFilePicked ?
-        <SummaryCard />
+        <>
+          <SummaryCard />
+          <AchievementsCard />
+        </>
         :
         <div className='dashboard__error content__panel'>
           <h2>Error: Save file not loaded correctly.</h2>
