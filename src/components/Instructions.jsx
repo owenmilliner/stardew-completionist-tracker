@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { FileContext } from '../contexts/FileContext';
+import { example } from '../data/saves/example-save';
 
 const Instructions = () => {
   const { selectedFileData, setSelectedFileData, isFilePicked, setIsFilePicked } = useContext(FileContext);
@@ -39,6 +40,18 @@ const Instructions = () => {
     navigate(path);
   };
 
+  const handleExampleLoad = async () => {
+    setSelectedFileData(example);
+  };
+
+  const handleExampleNavigation = (event) => {
+    event.preventDefault();
+    handleExampleLoad().then(() => {
+      const path = '/dashboard';
+      navigate(path);
+    });
+  };
+
   return (
     <div className='instructions content'>
       <div className='instructions__overview content__panel'>
@@ -74,15 +87,20 @@ const Instructions = () => {
           <label htmlFor='file-upload' className='instructions__start__input'>
             📄 File Upload
           </label>
-          <input id='file-upload' type='file' onChange={handleFileUpload}/>
+          <input id='file-upload' type='file' onChange={(handleFileUpload)}/>
           {isFilePicked && farmName !== '' ? <p className='instructions__start__info'>File <span id='instructions__start__name'>{farmName}</span> loaded.</p> : null}
           {isFilePicked ? <button className='instructions__start__button' type='submit'>Submit</button> : null}
         </form>
       </div>
 
-      <div className='instructions__resources content__panel'>
-        <h2>Additional useful resources.</h2>
-        <p>Placeholder for description.</p>
+      <div className='instructions__example` content__panel'>
+        <h2>Example save file.</h2>
+        <p>To view the completion tracker using an pre-loaded example save file, click the submit button below.</p>
+        <p>This will load a Stardew Valley save file into the tracker, providing a demonstration of how the app works.</p>
+
+        <form className='instructions__example__form' onSubmit={handleExampleNavigation}>
+          <button className='instructions__example__button' type='submit'>Submit</button>
+        </form>
       </div>
     </div>
   );
