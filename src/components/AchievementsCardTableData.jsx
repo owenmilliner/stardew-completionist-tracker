@@ -8,7 +8,6 @@ const AchievementsCardTableData = ({achievement}) => {
   const { selectedFileData } = useContext(FileContext);
   const [ unlocked, setUnlocked ] = useState(false);  
   const [ achievementData, setAchievementData ] = useState({name: '', title: '', description: '', status: '', filename: ''});
-
   const achievementsUnlocked = selectedFileData.player[0].achievements[0].int.sort();
 
   useEffect(() => {

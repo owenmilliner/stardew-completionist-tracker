@@ -107,7 +107,33 @@ input[type="file"] {
   padding: 0.25vh 0vh;
 }
 
+.content__section {
+  display: grid;
+  grid-template-areas: 
+    'header button'
+    'table table';
+    grid-template-columns: 90% 10%;
+}
+
+.content__section__header {
+  grid-area: header;
+}
+
+.content__section__toggle {
+  grid-area: button;
+  height: 50%;
+  margin: auto;
+  border: 0.2vh solid black;
+  border-radius: 0.3vh;
+  display: inline-block;
+  padding: 1vh 1vh 1vh 1vh;
+  cursor: pointer;
+  background-color: whitesmoke;
+  font-size: 2vh;
+}
+
 .achievements__table {
+  grid-area: table;
   width: 100%;
 }
 
