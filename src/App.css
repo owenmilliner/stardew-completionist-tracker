@@ -33,6 +33,7 @@ h2 {
   grid-area: logo;
   height: 100%;
   margin: auto;
+  cursor: pointer;
 }
 
 #header__subtitle {
@@ -41,12 +42,12 @@ h2 {
   margin: auto;
 }
 
-.instructions {
+.content {
   width: 60vw;
   margin: auto;
 }
 
-.instructions__panel {
+.content__panel {
   background-color: #FFDF9B;
   border-radius: 1vh;
   padding: 1vh;
@@ -59,16 +60,83 @@ h2 {
   list-style: circle;
 }
 
+.instructions__start__form {
+  display: grid;
+  grid-template-areas: "upload info button";
+  grid-template-columns: 20% 64% 15%;
+}
+
 .instructions__start__input {
   border: 1px solid black;
   display: inline-block;
-  padding: 1vh;
+  padding: 1.25vh 1vh 1vh 1vh;
   cursor: pointer;
   background-color: whitesmoke;
 }
 
 input[type="file"] {
   display: none;
+}
+
+.instructions__start__info {
+  padding-left: 1vw;
+}
+
+#instructions__start__name {
+  color: #dc2f02;
+  font-style: italic;
+}
+
+.instructions__start__button {
+  height: 60%;
+  width: 70%;
+  margin: auto;
+  border: 1px solid black;
+  display: inline-block;
+  cursor: pointer;
+  background-color: whitesmoke;
+  font-weight: bolder;
+}
+
+.dashboard__error__navigation {
+  text-decoration: none;
+  color: #dc2f02;
+}
+
+.summary li {
+  padding: 0.25vh 0vh;
+}
+
+.achievements__table {
+  width: 100%;
+}
+
+.achievements__table__col1 {
+  width: 15%;
+}
+
+.achievements__table__col2 {
+  width: 25%;
+}
+
+.achievements__table__col3 {
+  width: 25%;
+}
+
+.achievement__image {
+  width: 5vw;
+}
+
+.achievement__details--unlocked-false {
+  color: red;
+}
+
+.achievement__details--unlocked-true {
+  color: green;
+}
+
+.achievement__details--unlocked-undefined {
+  color: green;
 }
 
 @media only screen and (max-width: 700px) {
