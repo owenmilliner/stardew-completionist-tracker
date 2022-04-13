@@ -1,15 +1,11 @@
 /* eslint-disable no-prototype-builtins */
-
+/* eslint-disable no-case-declarations */
 import { crops } from './cropsReference';
 import { monsters } from './monsterSlayerReference';
 import { fullShipmentCodes } from './fullShipmentReference';
+import { formatNumber } from '../utils/formatMoney';
 
-/* eslint-disable no-case-declarations */
 let progress = {};
-
-const formatNumber = (number) => {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-};
 
 export const handleAchievementProgress = (name, saveGame, setUnlocked) => {
   const friends = saveGame.player[0].friendshipData[0].item;

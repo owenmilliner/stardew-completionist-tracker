@@ -111,8 +111,8 @@ input[type="file"] {
   display: grid;
   grid-template-areas: 
     'header button'
-    'table table';
-    grid-template-columns: 90% 10%;
+    'body body';
+    grid-template-columns: 85% 15%;
 }
 
 .content__section__header {
@@ -122,6 +122,7 @@ input[type="file"] {
 .content__section__toggle {
   grid-area: button;
   height: 50%;
+  width: 70%;
   margin: auto;
   border: 0.2vh solid black;
   border-radius: 0.3vh;
@@ -132,8 +133,8 @@ input[type="file"] {
   font-size: 2vh;
 }
 
-.achievements__table {
-  grid-area: table;
+.content__section__body {
+  grid-area: body;
   width: 100%;
 }
 
@@ -163,6 +164,16 @@ input[type="file"] {
 
 .achievement__details--unlocked-undefined {
   color: green;
+}
+
+.stats__table {
+  width: 100%;
+}
+
+.stats__table td {
+  width: 50%;
+  padding: 1vh 1vh 1vh 0vh;
+  border-bottom: 0.1vh solid black;
 }
 
 @media only screen and (max-width: 700px) {
