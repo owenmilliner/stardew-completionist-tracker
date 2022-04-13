@@ -14,7 +14,7 @@ const AchievementsCard = () => {
       <h2 className='content__section__header'>Achievements.</h2>
       <button className='content__section__toggle' onClick={() => setIsActive(!isActive)}>{isActive ? 'Hide' : 'Show'}</button>
       {isActive ? 
-        <table className='achievements__table'>
+        <table className='content__section__body'>
           <col className='achievements__table__col1' />
           <col className='achievements__table__col2' />
           <col className='achievements__table__col3' />
