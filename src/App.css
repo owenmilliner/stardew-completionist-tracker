@@ -176,6 +176,14 @@ input[type="file"] {
   border-bottom: 0.1vh solid black;
 }
 
+.stats__achievement--unlocked-true {
+  color: green;
+}
+
+.stats__achievement--unlocked-false {
+  color: red;
+}
+
 @media only screen and (max-width: 700px) {
   .header {
     height: 15vh;

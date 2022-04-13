@@ -38,7 +38,30 @@ const MoneyCard = () => {
     },
   ];
 
-  const moneyListItem = (key, value) =>
+  const moneyAchievements = [
+    {
+      index: 0,
+      goal: 15000
+    }, 
+    {
+      index: 1, 
+      goal: 25000
+    }, 
+    {
+      index: 2, 
+      goal: 250000
+    }, 
+    {
+      index: 3, 
+      goal: 1000000
+    }, 
+    {
+      index: 4, 
+      goal: 10000000
+    }
+  ];
+
+  const moneyTableData = (key, value) =>
     (
       <tr>
         <td>
@@ -49,6 +72,15 @@ const MoneyCard = () => {
         </td>
       </tr>
     );
+
+  const achievementListItem = (name, description, goal) => {
+    const unlocked = Number(selectedFileData.player[0].totalMoneyEarned) >= goal;
+    return (
+      <li className={`stats__achievement--unlocked-${unlocked}`}>
+        {unlocked ? '✔' : '✘'}{name}: {description}
+      </li>
+    );
+  };
 
   return (
     <div className='content__section content__panel'>
@@ -61,9 +93,16 @@ const MoneyCard = () => {
           </h3>
           <table className='stats__table'>
             <tbody>
-              {moneyData.map((stat) => moneyListItem(stat.key, stat.value))}
+              {moneyData.map((stat) => moneyTableData(stat.key, stat.value))}
             </tbody>
           </table>
+
+          <h3>
+            Money achievements.
+          </h3>
+          <ul>
+            {moneyAchievements.map((achievement) => achievementListItem(achievementReference[achievement.index].name, achievementReference[achievement.index].description, achievement.goal))}
+          </ul>
         </div>
         : null}
     </div> 
