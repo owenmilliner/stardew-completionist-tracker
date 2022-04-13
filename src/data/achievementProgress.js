@@ -1,4 +1,9 @@
 /* eslint-disable no-prototype-builtins */
+
+import { crops } from './cropsReference';
+import { monsters } from './monsterSlayerReference';
+import { fullShipmentCodes } from './fullShipmentReference';
+
 /* eslint-disable no-case-declarations */
 let progress = {};
 
@@ -9,125 +14,9 @@ const formatNumber = (number) => {
 export const handleAchievementProgress = (name, saveGame, setUnlocked) => {
   const friends = saveGame.player[0].friendshipData[0].item;
   let counter = 0;
-  const crops = {
-    24: 'Parsnip', 
-    188: 'Green Bean',
-    190: 'Cauliflower', 
-    192: 'Potato', 
-    248: 'Garlic', 
-    250: 'Kale', 
-    252: 'Rhubarb', 
-    254: 'Melon', 
-    256: 'Tomato',
-    258: 'Blueberry', 
-    260: 'Hot Pepper', 
-    262: 'Wheat',
-    264: 'Radish', 
-    266: 'Red Cabbage', 
-    268: 'Starfruit', 
-    270: 'Corn', 
-    272: 'Eggplant',
-    274: 'Artichoke',
-    276: 'Pumpkin',
-    278: 'Bok Choy',
-    280: 'Yam',
-    282: 'Cranberries',
-    284: 'Beet',
-    300: 'Amaranth',
-    304: 'Hops', 
-    398: 'Grape',
-    400: 'Strawberry',
-    433: 'Coffee Bean'
-  };
-  const fullShipmentCodes = [16, 18, 20, 24, 78, 88, 90, 91, 92, 176, 174, 
-    180, 182, 184, 186, 188, 190, 192, 248, 250, 252, 254, 256, 257, 258, 
-    259, 260, 262, 264, 266, 268, 270, 271, 272, 274, 276, 278, 280, 281, 
-    282, 283, 284, 289, 300, 303, 304, 305, 306, 307, 308, 330, 334, 335, 
-    336, 337, 338, 340, 342, 344, 346, 348, 350, 372, 376, 378, 390, 382, 
-    384, 386, 388, 390, 392, 393, 394, 396, 397, 398, 399, 400, 402, 404, 
-    406, 408, 410, 412, 414, 416, 418, 420, 421, 422, 424, 426, 428, 430, 
-    432, 433, 436, 438, 440, 442, 444, 445, 446, 447, 454, 459, 591, 593, 
-    595, 597, 613, 614, 634, 635, 636, 637, 638, 684, 709, 724, 725, 726, 
-    766, 767, 768, 769, 771, 787, 807, 812, 814, 815, 829, 830, 832, 834, 
-    848, 851, 881, 909, 910];
   const itemsShipped = saveGame.player[0].basicShipped[0].item;
   const mailReceived = saveGame.player[0].mailReceived[0].string;
   const skills = saveGame.player[0].experiencePoints[0].int;
-  const monsters = {
-    'Slimes': { 
-      validMonsters: 
-        ['Green Slime', 'Frost Jelly', 'Sludge', 'Yellow Slime', 'Copper Slime', 'Iron Slime', 'Tiger Slime', 'Prismatic Slime'], 
-      count: 0,
-      goal: 1000
-    },
-    'Void Spirits': { 
-      validMonsters: 
-         ['Shadow Shaman', 'Shadow Brute', 'Shadow Sniper'], 
-      count: 0,
-      goal: 150
-    },
-    'Bats': { 
-      validMonsters: 
-         ['Bat', 'Frost Bat', 'Lava Bat', 'Iridium Bat'], 
-      count: 0,
-      goal: 200
-    },
-    'Skeletons': { 
-      validMonsters: 
-         ['Skeleton', 'Skeleton Mage'], 
-      count: 0,
-      goal: 50
-    },
-    'Cave Insects': { 
-      validMonsters: 
-         ['Bug', 'Fly', 'Grub'], 
-      count: 0,
-      goal: 125
-    },
-    'Duggies': { 
-      validMonsters: 
-         ['Duggy', 'Magma Duggy'], 
-      count: 0,
-      goal: 30
-    },
-    'Dust Sprites': { 
-      validMonsters: 
-         ['Dust Spirit'], 
-      count: 0,
-      goal: 500
-    },
-    'Rock Crabs': { 
-      validMonsters: 
-         ['Rock Crab', 'Lava Crab', 'Iridium Crab'], 
-      count: 0,
-      goal: 60
-    },
-    'Mummies': { 
-      validMonsters: 
-         ['Mummy'], 
-      count: 0,
-      goal: 100
-    },
-    'Pepper Rex': { 
-      validMonsters: 
-         ['Pepper Rex'], 
-      count: 0,
-      goal: 50
-    },
-    'Serpents': { 
-      validMonsters: 
-         ['Serpent', 'Royal Serpent'], 
-      count: 0,
-      goal: 250
-    },
-    'Magma Sprites': { 
-      validMonsters: 
-         ['Magma Sprite',  'Magma Sparker'], 
-      count: 0,
-      goal: 150
-    },
-  };
-
 
   switch(name) {
   case 'Greenhorn':
@@ -326,7 +215,7 @@ export const handleAchievementProgress = (name, saveGame, setUnlocked) => {
     if (mailReceived.includes('ccMovieTheaterJoja')) {
       setUnlocked(undefined);
       progress.valueOne = undefined;
-    } else if (mailReceived.includes('ccMovieTheater')) {
+    } else if (mailReceived.includes('ccMovieTheater') || mailReceived.includes('abandonedJojaMartAccessible')) {
       setUnlocked(true);
       progress.valueOne = true;
     } else {
