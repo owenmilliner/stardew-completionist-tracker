@@ -171,7 +171,7 @@ export const handleAchievementProgress = (name, saveGame, setUnlocked) => {
     break;
 
   case 'Prairie King':
-    const prairieDefeated = saveGame.player[0].mailReceived.includes('Beat_PK');
+    const prairieDefeated = saveGame.player[0].mailReceived[0].string.includes('Beat_PK');
 
     if (prairieDefeated) {
       progress.valueOne = undefined;
