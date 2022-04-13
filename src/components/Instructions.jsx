@@ -23,7 +23,6 @@ const Instructions = () => {
   };
 
   useEffect(() => {
-    console.log(selectedFileData);
     if (Object.keys(selectedFileData)[0]) {
       setIsFilePicked(true);
 

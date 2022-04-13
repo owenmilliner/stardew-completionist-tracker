@@ -24,8 +24,8 @@ const SummaryCard = () => {
   };
 
   const formatAchievementProgress = (achievements) => {
-    const percentage = `${(achievements.length / 40) * 100}%`;
-    return `${percentage} completed. (${achievements.length}/40 achievements).`;
+    const percentage = `${Math.floor((achievements.length / 39) * 100)}%`;
+    return `${percentage} completed. (${achievements.length}/39 achievements).`;
   };
 
   return (
@@ -52,7 +52,7 @@ const SummaryCard = () => {
           {formatMoneyEarned(selectedFileData.player[0].totalMoneyEarned)} earned.
         </li>
         <li>
-          {formatAchievementProgress(selectedFileData.player[0].achievements[0].int)}
+          {formatAchievementProgress(selectedFileData.player[0].achievements[0].int)}<strong>FIXME:</strong>  
         </li>
       </ul>
     </div> 

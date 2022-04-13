@@ -116,15 +116,11 @@ input[type="file"] {
 }
 
 .achievements__table__col2 {
-  width: 35%;
+  width: 25%;
 }
 
 .achievements__table__col3 {
-  width: 20%;
-}
-
-.achievements__table__col3 {
-  width: 20%;
+  width: 25%;
 }
 
 .achievement__image {
@@ -136,6 +132,10 @@ input[type="file"] {
 }
 
 .achievement__details--unlocked-true {
+  color: green;
+}
+
+.achievement__details--unlocked-undefined {
   color: green;
 }
 
