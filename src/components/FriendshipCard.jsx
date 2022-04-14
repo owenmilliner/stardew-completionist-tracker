@@ -1,10 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { FileContext } from '../contexts/FileContext';
 import { formatNumber } from '../utils/formatMoney';
+import { achievementReference } from '../data/achievementReference';
 
 const FriendshipCard = () => {
   const [isActive, setIsActive] = useState(false);
   const { selectedFileData } = useContext(FileContext);
+  const heartCounters = {
+    5: 0, 
+    10: 0
+  };
 
   const farmerFriendships = selectedFileData.player[0].friendshipData[0].item;
   const friendshipData = [];
@@ -54,14 +59,14 @@ const FriendshipCard = () => {
       name: villagerName,
       friendshipPoints: villagerPoints,
       heartLevel: Math.floor(villagerPoints / 250),
-      pointsUntilMax: villagerPoints <= 2500 ? 2500 - villagerPoints : 0,
+      pointsUntilMax: villagerPoints <= 2500 ? formatNumber(2500 - villagerPoints) : 0,
       lovedItems: villagerGifts[villagerName]
     });
   });
 
   const friendshipTableData = (name, friendshipPoints, heartLevel, pointsUntilMax, lovedItems) => {
-    console.log(name);
-    console.log(villagerGifts[name]);
+    if (heartLevel >= 5 && heartLevel < 10) heartCounters[5]++;
+    else if (heartLevel >= 10) heartCounters[10]++;
     return villagerGifts[name] ? (
       <tr>
         <td>
@@ -83,6 +88,49 @@ const FriendshipCard = () => {
     ) : null;
   };
 
+  const friendshipAchievements = [
+    {
+      index: 6,
+      goal: 5,
+      count: 1
+    }, 
+    {
+      index: 7, 
+      goal: 10,
+      count: 1
+    }, 
+    {
+      index: 9, 
+      goal: 10,
+      count: 8
+    }, 
+    {
+      index: 11, 
+      goal: 5,
+      count: 4
+    }, 
+    {
+      index: 12, 
+      goal: 5,
+      count: 10
+    },
+    {
+      index: 13, 
+      goal: 5,
+      count: 20
+    }
+  ];
+
+
+  const achievementListItem = (name, description, goal, count) => {
+    const unlocked = heartCounters[goal] >= count;
+    return (
+      <li className={`stats__achievement--unlocked-${unlocked}`}>
+        {unlocked ? '✔' : '✘'}{name}: {description}
+      </li>
+    );
+  };
+
   return (
     <div className='content__section content__panel'>
       <h2 className='content__section__header'>Friendship.</h2>
@@ -96,13 +144,13 @@ const FriendshipCard = () => {
             <thead>
               <tr>
                 <th className='friendship__column__1'>
-                  Name
+                  Name.
                 </th>
                 <th className='friendship__column__2'>
-                  Friendship Level
+                  Friendship Level.
                 </th>
                 <th className='friendship__column__3'>
-                  Points until max
+                  Points until max.
                 </th>
                 <th className='friendship__column__4'>
                   Loved items.
@@ -120,6 +168,13 @@ const FriendshipCard = () => {
                 ))}
             </tbody>
           </table>
+
+          <h3>
+            Friendship achievements.
+          </h3>
+          <ul>
+            {friendshipAchievements.map((achievement) => achievementListItem(achievementReference[achievement.index].name, achievementReference[achievement.index].description, achievement.goal, achievement.count))}
+          </ul>
         </div>
         : null}
     </div> 
