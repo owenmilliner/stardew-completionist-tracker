@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { FileContext } from '../contexts/FileContext';
 import { formatNumber } from '../utils/formatMoney';
 import { achievementReference } from '../data/achievementReference';
+import AchievementsList from './AchievementsList';
 
 const FriendshipCard = () => {
   const [isActive, setIsActive] = useState(false);
@@ -56,6 +57,7 @@ const FriendshipCard = () => {
     'Wizard': ['Purple Mushroom', 'Solar Essence', 'Super Cucumber, Void Essence'],
   };
 
+  let counter = 0;
   farmerFriendships.forEach((villager, index) => {
     const villagerName = villager.key[0].string[0];
     const villagerPoints = villager.value[0].Friendship[0].Points[0];
@@ -70,7 +72,10 @@ const FriendshipCard = () => {
 
   const friendshipTableData = (name, heartLevel, pointsUntilMax, lovedItems) => {
     if (heartLevel >= 5 && heartLevel < 10) heartCounters[5]++;
-    else if (heartLevel >= 10) heartCounters[10]++;
+    else if (heartLevel >= 10) {
+      heartCounters[5]++;
+      heartCounters[10]++;
+    }
     return villagerGifts[name] ? (
       <tr>
         <td>
@@ -128,9 +133,7 @@ const FriendshipCard = () => {
   const achievementListItem = (name, description, goal, count) => {
     const unlocked = heartCounters[goal] >= count;
     return (
-      <li key={name} className={`stats__achievement--unlocked-${unlocked}`}>
-        {unlocked ? '✔' : '✘'}{name}: {description}
-      </li>
+      <AchievementsList name={name} description={description} unlocked={unlocked}/>
     );
   };
 

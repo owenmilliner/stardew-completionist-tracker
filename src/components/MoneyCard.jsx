@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { FileContext } from '../contexts/FileContext';
 import { achievementReference } from '../data/achievementReference';
 import { formatNumber } from '../utils/formatMoney';
+import AchievementsList from './AchievementsList';
 
 const MoneyCard = () => {
   const [isActive, setIsActive] = useState(false);
@@ -76,9 +77,7 @@ const MoneyCard = () => {
   const achievementListItem = (name, description, goal) => {
     const unlocked = Number(selectedFileData.player[0].totalMoneyEarned) >= goal;
     return (
-      <li className={`stats__achievement--unlocked-${unlocked}`}>
-        {unlocked ? '✔' : '✘'}{name}: {description}
-      </li>
+      <AchievementsList name={name} description={description} unlocked={unlocked}/>
     );
   };
 
