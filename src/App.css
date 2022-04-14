@@ -170,10 +170,14 @@ input[type="file"] {
   width: 100%;
 }
 
+
 .stats__table td {
-  width: 50%;
   padding: 1vh 1vh 1vh 0vh;
   border-bottom: 0.1vh solid black;
+}
+
+.money__table td {
+  width: 50%;
 }
 
 .stats__achievement--unlocked-true {
@@ -182,6 +186,31 @@ input[type="file"] {
 
 .stats__achievement--unlocked-false {
   color: red;
+}
+
+.friendship__heart__level {
+  height: 1.5vh;
+}
+
+.friendship__column__1 {
+  width: 15%;
+}
+
+.friendship__column__2 {
+  width: 30%;
+}
+
+.friendship__column__3 {
+  width: 5%;
+}
+
+.friendship__column__4 {
+  width: 20%;
+}
+
+.friendship__item {
+  padding: 0;
+  margin: 0.5vh;
 }
 
 @media only screen and (max-width: 700px) {
