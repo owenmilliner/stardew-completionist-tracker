@@ -62,14 +62,13 @@ const FriendshipCard = () => {
     
     friendshipData.push({
       name: villagerName,
-      friendshipPoints: villagerPoints,
       heartLevel: Math.floor(villagerPoints / 250),
       pointsUntilMax: villagerPoints <= 2500 ? formatNumber(2500 - villagerPoints) : 0,
       lovedItems: villagerGifts[villagerName]
     });
   });
 
-  const friendshipTableData = (name, friendshipPoints, heartLevel, pointsUntilMax, lovedItems) => {
+  const friendshipTableData = (name, heartLevel, pointsUntilMax, lovedItems) => {
     if (heartLevel >= 5 && heartLevel < 10) heartCounters[5]++;
     else if (heartLevel >= 10) heartCounters[10]++;
     return villagerGifts[name] ? (
@@ -129,7 +128,7 @@ const FriendshipCard = () => {
   const achievementListItem = (name, description, goal, count) => {
     const unlocked = heartCounters[goal] >= count;
     return (
-      <li className={`stats__achievement--unlocked-${unlocked}`}>
+      <li key={name} className={`stats__achievement--unlocked-${unlocked}`}>
         {unlocked ? '✔' : '✘'}{name}: {description}
       </li>
     );
@@ -177,7 +176,6 @@ const FriendshipCard = () => {
               }).map((villager) => 
                 friendshipTableData(
                   villager.name, 
-                  villager.friendshipPoints, 
                   villager.heartLevel, 
                   villager.pointsUntilMax, 
                   villager.lovedItems
