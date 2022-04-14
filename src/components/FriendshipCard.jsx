@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { FileContext } from '../contexts/FileContext';
 import { formatNumber } from '../utils/formatMoney';
 import { achievementReference } from '../data/achievementReference';
@@ -6,10 +6,15 @@ import { achievementReference } from '../data/achievementReference';
 const FriendshipCard = () => {
   const [isActive, setIsActive] = useState(false);
   const { selectedFileData } = useContext(FileContext);
+  const [ sortCriteria, setSortCriteria ] =  useState('name');
+  const [ sortAscending, setSortAscending ] =  useState(true);
   const heartCounters = {
     5: 0, 
     10: 0
   };
+
+  useEffect(() => {
+  }, [sortCriteria]);
 
   const farmerFriendships = selectedFileData.player[0].friendshipData[0].item;
   const friendshipData = [];
@@ -121,7 +126,6 @@ const FriendshipCard = () => {
     }
   ];
 
-
   const achievementListItem = (name, description, goal, count) => {
     const unlocked = heartCounters[goal] >= count;
     return (
@@ -129,6 +133,15 @@ const FriendshipCard = () => {
         {unlocked ? '✔' : '✘'}{name}: {description}
       </li>
     );
+  };
+
+  const handleSort = (sortBy) => {
+    if (sortBy === sortCriteria) {
+      setSortAscending(!sortAscending);
+    } else {
+      setSortAscending(true);
+      setSortCriteria(sortBy);
+    }
   };
 
   return (
@@ -143,13 +156,13 @@ const FriendshipCard = () => {
           <table className='friendship__table stats__table'>
             <thead>
               <tr>
-                <th className='friendship__column__1'>
+                <th className='friendship__column__1' onClick={() => handleSort('name')}>
                   Name.
                 </th>
-                <th className='friendship__column__2'>
+                <th className='friendship__column__2' onClick={() => handleSort('heartLevel')}>
                   Friendship Level.
                 </th>
-                <th className='friendship__column__3'>
+                <th className='friendship__column__3' onClick={() => handleSort('heartLevel')}>
                   Points until max.
                 </th>
                 <th className='friendship__column__4'>
@@ -158,7 +171,10 @@ const FriendshipCard = () => {
               </tr>
             </thead>
             <tbody>
-              {friendshipData.map((villager) => 
+              {friendshipData.sort((a, b) => {
+                if (sortAscending) return a[sortCriteria] > b[sortCriteria] ? 1 : -1;
+                else return a[sortCriteria] < b[sortCriteria] ? 1 : -1;
+              }).map((villager) => 
                 friendshipTableData(
                   villager.name, 
                   villager.friendshipPoints, 
