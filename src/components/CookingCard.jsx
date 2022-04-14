@@ -1,5 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { FileContext } from '../contexts/FileContext';
+import { achievementReference } from '../data/achievementReference';
+
 const CookingCard = () => {
   const [isActive, setIsActive] = useState(false);
   const { selectedFileData } = useContext(FileContext);
@@ -75,6 +77,30 @@ const CookingCard = () => {
       </tr>
     );
 
+  const cookingAchievements = [
+    {
+      index: 15,
+      goal: 10
+    }, 
+    {
+      index: 16, 
+      goal: 25
+    }, 
+    {
+      index: 17, 
+      goal: 80
+    }
+  ];
+
+  const achievementListItem = (name, description, goal) => {
+    const unlocked = cooking.recipesCooked[0].item.length >= goal;
+    return (
+      <li key={name} className={`stats__achievement--unlocked-${unlocked}`}>
+        {unlocked ? '✔' : '✘'}{name}: {description}
+      </li>
+    );
+  };
+
   return (
     <div className='content__section content__panel'>
       <h2 className='content__section__header'>Cooking.</h2>
@@ -93,6 +119,13 @@ const CookingCard = () => {
               {cookingData.map((stat) => cookingTableData(stat.key, stat.value))}
             </tbody>
           </table>
+
+          <h3>
+            Cooking achievements.
+          </h3>
+          <ul>
+            {cookingAchievements.map((achievement) => achievementListItem(achievementReference[achievement.index].name, achievementReference[achievement.index].description, achievement.goal))}
+          </ul>
         </div>
         : null}
     </div> 
