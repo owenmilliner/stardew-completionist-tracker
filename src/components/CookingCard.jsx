@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { FileContext } from '../contexts/FileContext';
 import { achievementReference } from '../data/achievementReference';
+import AchievementsList from './AchievementsList';
 
 const CookingCard = () => {
   const [isActive, setIsActive] = useState(false);
@@ -95,9 +96,7 @@ const CookingCard = () => {
   const achievementListItem = (name, description, goal) => {
     const unlocked = cooking.recipesCooked[0].item.length >= goal;
     return (
-      <li key={name} className={`stats__achievement--unlocked-${unlocked}`}>
-        {unlocked ? '✔' : '✘'}{name}: {description}
-      </li>
+      <AchievementsList name={name} description={description} unlocked={unlocked}/>
     );
   };
 
