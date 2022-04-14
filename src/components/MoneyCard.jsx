@@ -76,7 +76,7 @@ const MoneyCard = () => {
   const achievementListItem = (name, description, goal) => {
     const unlocked = Number(selectedFileData.player[0].totalMoneyEarned) >= goal;
     return (
-      <li className={`stats__achievement--unlocked-${unlocked}`}>
+      <li key={name} className={`stats__achievement--unlocked-${unlocked}`}>
         {unlocked ? '✔' : '✘'}{name}: {description}
       </li>
     );
