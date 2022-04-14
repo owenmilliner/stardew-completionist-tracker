@@ -91,7 +91,7 @@ const MoneyCard = () => {
           <h3>
             Money stats.
           </h3>
-          <table className='stats__table'>
+          <table className='money__table stats__table'>
             <tbody>
               {moneyData.map((stat) => moneyTableData(stat.key, stat.value))}
             </tbody>
